@@ -78,6 +78,11 @@ func (s *Serve) Listen(port uint16) (err error) {
 	return s.ListenWithConfig(port, defaultConfig)
 }
 
+// Handler exposes the root HTTP handler.
+func (s *Serve) Handler() http.Handler {
+	return s.g.r
+}
+
 // ListenWithConfig will listen on a given port using the specified configuration
 func (s *Serve) ListenWithConfig(port uint16, c Config) (err error) {
 	s.s = newHTTPServer(s.g.r, port, c)
